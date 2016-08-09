@@ -14,7 +14,7 @@ and open the template in the editor.
         require_once ('config.php');
         require_once ('dbopen.php');
         
-        if(!sset($_COOKIE[$movie_cookie])) {
+        if(!isset($_COOKIE[$movie_cookie])) {
             // cookie not set
         } else {
             // cookie set and user propably logged
@@ -23,6 +23,22 @@ and open the template in the editor.
         $query = "SELECT * FROM Movie";
         $results = mysql_query($query)
                 or die("You suck at SQL " . mysql_error());
+        
+        $i = 0;                                                                 // number of movies
+        
+        while ($row = mysql_fetch_array($results)) {
+            echo "<div id=movie" . $i . ">";
+            echo "<p class=movieName>" . $row[1] .  "</p>";                     // print movie name
+            
+            if(is_null($row[2])) {
+                echo "<img class=movieImg src='pictures/noimage.jpg'></img>";
+            } else {
+                echo "<img class=movieImg src='pictures/" . $row[2] . "'></img>";  // path to img src
+            }
+            
+            echo "</div>";
+            $i++;
+        }
         
         
         // require_once ('dbclose.php');
