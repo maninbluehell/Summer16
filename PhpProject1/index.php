@@ -11,7 +11,15 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        // put your code here
+        require_once ('config.php');
+        require_once ('dbopen.php');
+        
+        $query = "SELECT * Movie";
+        $results = mysql_query($query)
+                or die("You suck at SQL " . mysql_error());
+        
+        
+        
         ?>
     </body>
 </html>
