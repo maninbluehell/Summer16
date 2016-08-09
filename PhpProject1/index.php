@@ -14,12 +14,18 @@ and open the template in the editor.
         require_once ('config.php');
         require_once ('dbopen.php');
         
-        $query = "SELECT * Movie";
+        if(!sset($_COOKIE[$movie_cookie])) {
+            // cookie not set
+        } else {
+            // cookie set and user propably logged
+        }
+        
+        $query = "SELECT * FROM Movie";
         $results = mysql_query($query)
                 or die("You suck at SQL " . mysql_error());
         
         
-        
+        // require_once ('dbclose.php');
         ?>
     </body>
 </html>
